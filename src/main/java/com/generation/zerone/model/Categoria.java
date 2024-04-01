@@ -5,7 +5,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "tb_categorias")
@@ -15,10 +17,12 @@ public class Categoria {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull(message = "O atributo categoria é obrigatório!")
-	private String categoria;
+	@NotBlank(message = "O campo Nome da Categoria é Obrigatório")
+	@Size(min = 5, max = 100, message = "Tamanho mínimo: 5, Tamano máximo: 100")
+	private String nomeCategoria;
 	
-	@NotNull(message = "O atributo descrição é obrigatório!")
+	@NotBlank(message = "O campo Descrição é Obrigatório")
+	@Size(min = 10, max = 1000, message = "Tamanho mínimo: 10, Tamano máximo: 1000")
 	private String descricao;
 
 	public Long getId() {
@@ -30,11 +34,11 @@ public class Categoria {
 	}
 
 	public String getCategoria() {
-		return categoria;
+		return nomeCategoria;
 	}
 
 	public void setCategoria(String categoria) {
-		this.categoria = categoria;
+		this.nomeCategoria = categoria;
 	}
 
 	public String getDescricao() {
