@@ -44,9 +44,9 @@ public class CategoriaController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Categoria> post(@Valid @RequestBody Categoria categoria) {
+	public ResponseEntity<Categoria> post(@Valid @RequestBody Categoria nomeCategoria) {
 		return ResponseEntity.status(HttpStatus.CREATED)
-				.body(categoriaRepository.save(categoria));
+				.body(categoriaRepository.save(nomeCategoria));
 	}
 	
 	@GetMapping("/nomeCategoria/{nomeCategoria}")
