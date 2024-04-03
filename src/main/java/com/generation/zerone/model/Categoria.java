@@ -33,12 +33,12 @@ public class Categoria {
 		this.id = id;
 	}
 
-	public String getCategoria() {
+	public String getNomeCategoria() {
 		return nomeCategoria;
 	}
 
-	public void setCategoria(String categoria) {
-		this.nomeCategoria = categoria;
+	public void setNomeCategoria(String nomeCategoria) {
+		this.nomeCategoria = nomeCategoria;
 	}
 
 	public String getDescricao() {
