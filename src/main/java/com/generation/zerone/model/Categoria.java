@@ -25,12 +25,12 @@ public class Categoria {
 	private Long id;
 	
 	
-	@NotBlank(message = "O campo Nome da Categoria é Obrigatório")
+	@NotBlank(message = "O campo Nome da Categoria é obrigatório!")
 	@Size(min = 5, max = 100, message = "Tamanho mínimo: 5, Tamano máximo: 100")
 	@Column(unique = true)
 	private String nomeCategoria;
 	
-	@NotBlank(message = "O campo Descrição é Obrigatório")
+	@NotBlank(message = "O campo Descrição é obrigatório!")
 	@Size(min = 10, max = 1000, message = "Tamanho mínimo: 10, Tamano máximo: 1000")
 	private String descricao;
 	

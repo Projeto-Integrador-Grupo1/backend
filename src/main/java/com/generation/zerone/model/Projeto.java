@@ -27,12 +27,12 @@ public class Projeto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank(message = "O campo Título é Obrigatório")
-	@Size(min = 2, max = 100, message = "Tamanho mínimo: 5, Tamano máximo: 100")
+	@NotBlank(message = "O campo Título é obrigatório!")
+	@Size(min = 2, max = 100, message = "Tamanho mínimo: 2, Tamano máximo: 100")
 	private String titulo;
 	
-	@NotBlank(message = "O campo Descrição é Obrigatório")
-	@Size(min = 10, max = 5000, message = "Tamanho mínimo: 10, Tamano máximo: 1000")
+	@NotBlank(message = "O campo Descrição é obrigatório!")
+	@Size(min = 10, max = 5000, message = "Tamanho mínimo: 10, Tamano máximo: 5000")
 	private String descricao;
 	
 	@NotNull
@@ -42,17 +42,17 @@ public class Projeto {
 	@Column(precision = 12, scale = 2)
 	private BigDecimal valorAtual;
 	
-	@NotNull(message = "O Valor de meta é obrigatório.")
+	@NotNull(message = "O Valor de Meta é obrigatório!")
 	@Column(precision = 12, scale = 2) 
 	private BigDecimal valorMeta;
 	
-	@NotNull(message = "Defina entre Imagem ou Vídeo" )
+	@NotNull(message = "Defina entre Imagem ou Vídeo!" )
 	private String tipoMidia;
 	
-	@NotNull(message = "É obrigatório inserir pelo menos uma Imagem ou Vídeo")
+	@NotNull(message = "É obrigatório inserir pelo menos uma Imagem ou Vídeo!")
 	private String linkMidia;
 	
-	@NotNull(message = "A Data limite é obrigatória")
+	@NotNull(message = "A Data Limite é obrigatória!")
 	private LocalDate dataLimite;
 	
 	@UpdateTimestamp
