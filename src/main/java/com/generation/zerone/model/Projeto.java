@@ -35,10 +35,8 @@ public class Projeto {
 	@Size(min = 10, max = 5000, message = "Tamanho mínimo: 10, Tamano máximo: 5000")
 	private String descricao;
 	
-	@NotNull
 	private Integer qtdDoacoes;
 	
-	@NotNull
 	@Column(precision = 12, scale = 2)
 	private BigDecimal valorAtual;
 	
@@ -59,11 +57,11 @@ public class Projeto {
 	private LocalDateTime data;
 	
 	@ManyToOne
-	@JsonIgnoreProperties("usuario")
+	@JsonIgnoreProperties("projeto")
 	private Usuario usuario;
 	
 	@ManyToOne
-	@JsonIgnoreProperties("categoria")
+	@JsonIgnoreProperties("projeto")
 	private Categoria categoria;
 
 	public Long getId() {
