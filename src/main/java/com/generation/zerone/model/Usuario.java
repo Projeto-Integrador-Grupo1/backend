@@ -32,7 +32,7 @@ public class Usuario {
 	private String email;
 	
 	@NotBlank(message = "A senha é obrigatória")
-	@Size(min = 8)
+	@Size(min = 8, message = "Digite pelo menos 8 caracteres")
 	private String senha;
 	
 	private String foto;
