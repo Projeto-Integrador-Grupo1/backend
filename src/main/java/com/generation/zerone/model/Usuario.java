@@ -17,27 +17,30 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "tb_categorias")
-public class Categoria {
-	
+@Table(name = "tb_usuarios")
+public class Usuario {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotBlank(message = "O nome de Usuário é obrigatório")
+	private String nome;
 	
-	@NotBlank(message = "O campo Nome da Categoria é Obrigatório")
-	@Size(min = 5, max = 100, message = "Tamanho mínimo: 5, Tamano máximo: 100")
+	@NotBlank(message = "O email de Usuário é obrigatório")
 	@Column(unique = true)
-	private String nomeCategoria;
+	private String email;
 	
-	@NotBlank(message = "O campo Descrição é Obrigatório")
-	@Size(min = 10, max = 1000, message = "Tamanho mínimo: 10, Tamano máximo: 1000")
-	private String descricao;
+	@NotBlank(message = "A senha é obrigatória")
+	@Size(min = 8)
+	private String senha;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties("categoria")
+	private String foto;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("usuario")
 	private List<Projeto> projeto;
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -46,20 +49,36 @@ public class Categoria {
 		this.id = id;
 	}
 
-	public String getNomeCategoria() {
-		return nomeCategoria;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNomeCategoria(String nomeCategoria) {
-		this.nomeCategoria = nomeCategoria;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
 	public List<Projeto> getProjeto() {
@@ -69,4 +88,6 @@ public class Categoria {
 	public void setProjeto(List<Projeto> projeto) {
 		this.projeto = projeto;
 	}
+	
+	
 }
