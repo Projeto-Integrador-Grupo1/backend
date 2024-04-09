@@ -30,8 +30,8 @@ public class Usuario {
 	
 	@NotBlank(message = "O email de Usuário é obrigatório")
 	@Email(message = "O Atributo Usuário deve ser um email válido!")
-	@Column(unique = true) //perguntar o unique
-	private String email; // email perguntar o nome
+	@Column(unique = true)
+	private String email;
 	
 	@NotBlank(message = "A senha é obrigatória")
 	@Size(min = 8, message = "A Senha deve ter no mínimo 8 caracteres")
