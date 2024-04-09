@@ -13,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -28,13 +29,15 @@ public class Usuario {
 	private String nome;
 	
 	@NotBlank(message = "O email de Usuário é obrigatório")
-	@Column(unique = true)
-	private String email;
+	@Email(message = "O Atributo Usuário deve ser um email válido!")
+	@Column(unique = true) //perguntar o unique
+	private String email; // email perguntar o nome
 	
 	@NotBlank(message = "A senha é obrigatória")
-	@Size(min = 8, message = "Digite pelo menos 8 caracteres")
+	@Size(min = 8, message = "A Senha deve ter no mínimo 8 caracteres")
 	private String senha;
 	
+	@Size(max = 5000, message = "O link da foto não pode ser maior do que 5000 caracteres")
 	private String foto;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.REMOVE)
