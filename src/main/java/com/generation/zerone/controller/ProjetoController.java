@@ -31,7 +31,7 @@ public class ProjetoController {
 	@Autowired
 	private ProjetoRepository projetoRepository;
 	
-	@GetMapping
+	@GetMapping("/all")
 	public ResponseEntity<List<Projeto>> getAll() {
 		return ResponseEntity.ok(projetoRepository.findAll());
 	}
