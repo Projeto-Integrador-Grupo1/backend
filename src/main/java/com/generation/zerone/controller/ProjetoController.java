@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.generation.zerone.model.Projeto;
+import com.generation.zerone.repository.CategoriaRepository;
 import com.generation.zerone.repository.ProjetoRepository;
 
 import jakarta.validation.Valid;
@@ -30,6 +31,9 @@ public class ProjetoController {
 
 	@Autowired
 	private ProjetoRepository projetoRepository;
+	
+	@Autowired
+	private CategoriaRepository categoriaRepository;
 	
 	@GetMapping("/all")
 	public ResponseEntity<List<Projeto>> getAll() {
@@ -45,8 +49,10 @@ public class ProjetoController {
 	
 	@PostMapping
 	public ResponseEntity<Projeto> post(@Valid @RequestBody Projeto projeto) {
-		return ResponseEntity.status(HttpStatus.CREATED)
+		if(categoriaRepository.existsById(projeto.getCategoria().getId()))	
+			return ResponseEntity.status(HttpStatus.CREATED)
 				.body(projetoRepository.save(projeto));
+		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Categoria não existe", null);
 	}
 	
 	@GetMapping("/titulo/{titulo}")
@@ -56,11 +62,18 @@ public class ProjetoController {
 	
 	@PutMapping
 	public ResponseEntity<Projeto> put(@Valid @RequestBody Projeto projeto){
-		return projetoRepository.findById(projeto.getId())
-				.map(resposta -> ResponseEntity.status(HttpStatus.OK)
-						.body(projetoRepository.save(projeto)))
-				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+		if(projetoRepository.existsById(projeto.getId())){
+			
+			if(categoriaRepository.existsById(projeto.getCategoria().getId()))
+				
+				return ResponseEntity.status(HttpStatus.OK)
+						.body(projetoRepository.save(projeto));
+			
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Categoria não existe", null);
 		}
+		
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+	}
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
