@@ -60,7 +60,10 @@ public class BasicSecurityConfig {
 				(auth) -> auth
 						.requestMatchers("/usuarios/logar").permitAll()
 						.requestMatchers("/usuarios/cadastrar").permitAll()
+						.requestMatchers("/categorias/all").permitAll()
 						.requestMatchers("/projetos/all").permitAll()
+						.requestMatchers(HttpMethod.GET, "/categorias/**").permitAll()
+						.requestMatchers(HttpMethod.GET, "/projetos/**").permitAll()
 						.requestMatchers("/error/**").permitAll()
 						.requestMatchers(HttpMethod.OPTIONS).permitAll()
 						.anyRequest().authenticated())
